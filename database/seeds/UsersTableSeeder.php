@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@luna.test',
             'password' => bcrypt('secret'),
             'email_verified_at' => now(),
-            'remember_token' => str_random(10),
+            'remember_token' => Str::random(10),
         ]);
 
         \App\Profile::create([
