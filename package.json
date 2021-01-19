@@ -1,51 +1,76 @@
 {
-  "private": true,
-  "scripts": {
-    "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch-poll": "npm run watch -- --watch-poll",
-    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.2.0",
-    "@babel/core": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
-    "@babel/preset-react": "^7.0.0",
-    "@casl/ability": "^2.5.1",
-    "@casl/react": "^0.8.1",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "cross-env": "^5.2.0",
-    "laravel-mix": "^3.0.0",
-    "redux-logger": "^3.0.6"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.0.0",
-    "@blueprintjs/core": "^3.9.0",
-    "@fortawesome/fontawesome-free": "^5.5.0",
-    "axios": "^0.17.1",
-    "bootstrap": "^4.3.1",
-    "bootstrap-sass": "^3.4.1",
-    "classnames": "^2.2.6",
-    "jquery": "^3.3.1",
-    "laravel-echo": "^1.5.1",
-    "lodash": "^4.17.11",
-    "moment": "^2.22.2",
-    "popper.js": "^1.14.6",
-    "prop-types": "^15.6.2",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-js-pagination": "^3.0.2",
-    "react-redux": "^5.1.1",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.3.1",
-    "redux": "^4.0.1",
-    "redux-persist": "^4.9.1",
-    "redux-thunk": "^2.3.0",
-    "ree-validate": "^3.0.2",
-    "socket.io-client": "^2.2.0"
-  }
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": "^7.3",
+        "doctrine/dbal": "^3.0",
+        "fideloper/proxy": "^4.4",
+        "laravel/framework": "^8.22",
+        "laravel/passport": "^10.1",
+        "laravel/scout": "^8.5",
+        "laravel/socialite": "^5.1",
+        "laravel/tinker": "^2.5",
+        "predis/predis": "^1.1",
+        "socialiteproviders/microsoft-graph": "^4.1",
+        "spatie/laravel-activitylog": "^3.16",
+        "spatie/laravel-permission": "^3.18",
+        "spatie/valuestore": "^1.2",
+        "teamtnt/laravel-scout-tntsearch-driver": "^11.1",
+        "torann/geoip": "^3.0"
+    },
+    "require-dev": {
+        "beyondcode/laravel-dump-server": "^1.7",
+        "filp/whoops": "^2.9",
+        "fzaninotto/faker": "^1.9",
+        "mockery/mockery": "^1.4",
+        "moontoast/math": "^1.2",
+        "nunomaduro/collision": "^5.2",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ],
+        "psr-4": {
+            "App\\": "app/",
+            "Component\\": "component/app/"
+        },
+        "files": [
+            "app/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+            ]
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
